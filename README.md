@@ -9,3 +9,5 @@ PID control is a vast field in control and many classes can be taught about this
 
 
 Below is presented the problem. Consider the car in the image below with a steerable front axle and 2 non-steerable wheels in the back. Say we wished this car to drive along the black line (the so-called reference trajectory) and assume the car has a fixed forward velocity but you have the ability to set the steering angle of the car. How would you do this? 
+
+<p align="right"> <img src="./img/1.png" style="right;" alt=" the maze " width="400" height="190"> </p> 
