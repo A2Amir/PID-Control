@@ -10,4 +10,9 @@ PID control is a vast field in control and many classes can be taught about this
 
 Below is presented the problem. Consider the car in the image below with a steerable front axle and 2 non-steerable wheels in the back. Say we wished this car to drive along the black line (the so-called reference trajectory) and assume the car has a fixed forward velocity but you have the ability to set the steering angle of the car. How would you do this? 
 
+1.	You could set the steering angle in proportion to what is known as the "Cross Track Error", which is the lateral distance between the vehicle and the so-called reference trajectory.
+2.	You could use a steering constant.
+3.	You could use random steering commands
+
+
 <p align="right"> <img src="./img/1.png" style="right;" alt=" the maze " width="450" height="230"> </p> 
