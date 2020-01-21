@@ -25,3 +25,5 @@ What you just learned above is called a "P-controller" where P stands for propor
 2.	It overshoots?
 3.	Either can happen?
 
+
+<p align="right"> <img src="./img/2.png" style="right;" alt=" the maze " width="450" height="230"> </p> 
