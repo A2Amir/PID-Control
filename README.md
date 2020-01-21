@@ -16,3 +16,12 @@ Below is presented the problem. Consider the car in the image below with a steer
 
 
 <p align="right"> <img src="./img/1.png" style="right;" alt=" the maze " width="450" height="230"> </p> 
+
+You will reach the trajectory, which means the larger the error, the more you're willing to turn towards the target trajectory.
+Proportional Control
+What you just learned above is called a "P-controller" where P stands for proportional. Suppose you steer in proportion to the cross track error and your steering angle is proportional to the cross Track error by a factor Tau. What will happen to the car?
+
+1.	It never quite reaches the reference trajectory?
+2.	It overshoots?
+3.	Either can happen?
+
