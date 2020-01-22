@@ -28,4 +28,10 @@ What you just learned above is called a "P-controller" where P stands for propor
 
 <p align="right"> <img src="./img/2.png" style="right;" alt=" the maze " width="450" height="230"> </p>
 
+
 The answer is it actually overshoots. The problem is no matter how small the Tau constant is, It will eventually turns its wheels quite a bit towards it's trajectory and moves towards the trajectory more and more(green lines) when it hits the trajectory, it's wheels will be straight but the robot itself will still be oriented a little bit downwards, so it's forced to overshoot.
+
+<p align="right"> <img src="./img/3.png" style="right;" alt=" the maze " width="450" height="230"> </p>
+
+
+What it applied to a car, a P-controller will act like below.  It will slightly overshoot, and that could be okay. The overshooting is very small but it'll never really converge. It will be what's called "marginally stable" or often just "stable" in the literature.
