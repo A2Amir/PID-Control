@@ -40,3 +40,16 @@ The answer is it actually overshoots. The problem is no matter how small the Tau
 
 
 What it applied to a car, a P-controller will act like below.  It will slightly overshoot, and that could be okay. The overshooting is very small but it'll never really converge. It will be what's called "marginally stable" or often just "stable" in the literature.
+
+<p align="right"> <img src="./img/5.png" style="right;" alt=" the maze " width="450" height="230"> </p>
+
+## Implement P Controller
+
+
+In the following section we will implement a P controller. In  the code I've prepared there is a class robot with which you're familiar and It has an "init". You can set the position using the function "set" and there is a move command
+Below is what I envision to happen, the robot is initially off the the x axis by 1 I want it to drive along the x axis and the y value is the same as the cross track error. By turning, inversely proportional to the y value using a parameter Tau that sets the response strength of the proportional control . I want the robot to turn towards the x axis, drive in that direction, overshoot, turn around, and drive back
+
+<p align="right"> <img src="./img/6.png" style="right;" alt=" the maze " width="450" height="230"> </p>
+
+To do this, simulate the world for a 800 steps, and use a proportionality term that sets my steering angle (alpha) in proportion to the cross track error y.
+
