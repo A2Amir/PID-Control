@@ -14,11 +14,16 @@ Below is presented the problem. Consider the car in the image below with a steer
 2.	You could use a steering constant.
 3.	You could use random steering commands
 
-
 <p align="right"> <img src="./img/1.png" style="right;" alt=" the maze " width="450" height="230"> </p> 
 
+The best suited to control the car is the steering angle in proportion to the Cross Track Error, As you get closer to trajectory, your steering will be slower and slower and clearly the other two answers are really bad.
+
+<p align="right"> <img src="./img/2.png" style="right;" alt=" the maze " width="450" height="230"> </p> 
+
 You will reach the trajectory, which means the larger the error, the more you're willing to turn towards the target trajectory.
-Proportional Control
+
+## Proportional Control
+
 What you just learned above is called a "P-controller" where P stands for proportional. Suppose you steer in proportion to the cross track error and your steering angle is proportional to the cross Track error by a factor Tau. What will happen to the car?
 
 1.	It never quite reaches the reference trajectory?
@@ -26,12 +31,12 @@ What you just learned above is called a "P-controller" where P stands for propor
 3.	Either can happen?
 
 
-<p align="right"> <img src="./img/2.png" style="right;" alt=" the maze " width="450" height="230"> </p>
+<p align="right"> <img src="./img/3.png" style="right;" alt=" the maze " width="450" height="230"> </p>
 
 
 The answer is it actually overshoots. The problem is no matter how small the Tau constant is, It will eventually turns its wheels quite a bit towards it's trajectory and moves towards the trajectory more and more(green lines) when it hits the trajectory, it's wheels will be straight but the robot itself will still be oriented a little bit downwards, so it's forced to overshoot.
 
-<p align="right"> <img src="./img/3.png" style="right;" alt=" the maze " width="450" height="230"> </p>
+<p align="right"> <img src="./img/4.png" style="right;" alt=" the maze " width="450" height="230"> </p>
 
 
 What it applied to a car, a P-controller will act like below.  It will slightly overshoot, and that could be okay. The overshooting is very small but it'll never really converge. It will be what's called "marginally stable" or often just "stable" in the literature.
