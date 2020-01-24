@@ -51,5 +51,8 @@ Below is what I envision to happen, the robot is initially off the the x axis by
 
 <p align="right"> <img src="./img/6.png" style="right;" alt=" the maze " width="450" height="230"> </p>
 
+
 To do this, simulate the world for a 800 steps, and use a proportionality term that sets my steering angle (alpha) in proportion to the cross track error y.
+
+
 
