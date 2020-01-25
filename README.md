@@ -58,7 +58,7 @@ To do this, simulate the world for a 200 steps, and use a proportionality term t
 <p align="right"> <img src="./img/8.png" style="right;" alt=" the execution of the code" width="450" height="230"> </p>
 
 
-When you change the Tau (the control parameter) from 0.1 to 0.3 you can see, it oscillates faster.
+When you change the Tau (the control parameter) from 0.1 to 0.3 you can see, it oscillates faster and we compensate much more.
 
 <p align="right"> <img src="./img/7.png" style="right;" alt=" the execution of the code" width="450" height="230"> </p>
 
