@@ -53,7 +53,13 @@ Below is what I envision to happen, the robot is initially off the x axis by 1 I
 <p align="right"> <img src="./img/6.png" style="right;" alt=" the maze " width="450" height="230"> </p>
 
 
-To do this, simulate the world for a 800 steps, and use a proportionality term that sets my steering angle (alpha) in proportion to the cross track error y.
+To do this, simulate the world for a 200 steps, and use a proportionality term that sets my steering angle (alpha) in proportion to the cross track error y. the image blow  presents the execution of the code.
 
+<p align="right"> <img src="./img/7.PNG" style="right;" alt=" the execution of the code" width="450" height="230"> </p>
+
+
+When you change the Tau (the control parameter) from 0.1 to 0.3 you can see, it oscillates faster.
+
+<p align="right"> <img src="./img/8.PNG" style="right;" alt=" the execution of the code" width="450" height="230"> </p>
 
 
