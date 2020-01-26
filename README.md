@@ -108,3 +108,16 @@ Below is presented the result of running the implemented the new controller:
 
 <p align="right"> <img src="./img/13.png" style="right;" alt=" PID controller" width="450" height="230"> </p>
 
+Notice: the purpose of the integral term is to compensate for biases and the current robot has no bias. Now, the big question is how we can find good control gains where control gains are these parameters tau_p, tau_d and tau_i. The answer is to called "twiddle." Some people call it "coordinate ascent" to make it a little more sophisticated.
+
+
+Twiddle
+In Twiddle, we are trying to optimize for a set of parameters. To do so, 
+
+1. Our function run()  (See the code) must return a goodness. This goodness value might be the average cross track error. 
+2. Say I wanted to implement Twiddle to minimize the average cross track error. The output of the run function depends on the three parameters.
+To implement Twiddle, we 
+
+1. build a parameter vector ( named p) of our 3-target parameters, and initialize it with zero.
+2. build a vector of potential changes (named dp) that you want to probe and initialize them for now with 1.
+3. Then you can run our command run( ) with our parameters and whatever it outputs is our best error so far.
