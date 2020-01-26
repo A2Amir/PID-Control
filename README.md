@@ -68,13 +68,13 @@ The basic next question is is there a way to void the overshoot?  It would be ni
 
 In PD-control the steering alpha is no just related to the cross track error by virtue of the gain parameter tau_p( called previously tau) but also to the temporal derivative of the cross track error, what this means is that when the car has turned enough to reduce the cross track error, it won't just go shooting for the x axis. As seen below, by assuming appropriate settings of the differential gain tau_d versus the proportional gain tau_p, it gracefully approaches the target trajectory.
 
-<p align="right"> <img src="./img/9.png" style="right;" alt=" the PD Controller" width="450" height="230"> </p>
+<p align="right"> <img src="./img/19.png" style="right;" alt=" the PD Controller" width="450" height="230"> </p>
 
 
 How do you compute the temporal derivative of the cross track error? This can be computed by the cross track error at time t minus the crosst rack error at time t minus 1 divided by the time span between t and t minus 1. In our code, we assume delta t equals 1, so we can omit this.
 
-<p align="right"> <img src="./img/10.png" style="right;" alt="compute the temporal derivative of the cross track error" width="150" height="90"> </p>
+<p align="right"> <img src="./img/20.png" style="right;" alt="compute the temporal derivative of the cross track error" width="150" height="90"> </p>
 
 We now control not just in proportion to the error itself but also to the difference of the error using a second constant tau d. After implementing and running the code we can see from the below image the PD controller performs much better when it comes to compare with the P Controller.
 
-<p align="right"> <img src="./img/10.png" style="right;" alt=" the execution of the PD controller performs" width="450" height="230"> </p>
+<p align="right"> <img src="./img/9.png" style="right;" alt=" the execution of the PD controller performs" width="450" height="230"> </p>
