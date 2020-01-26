@@ -176,3 +176,6 @@ As seen below after optimising the parameters with the twiddle algorithm, the PI
 
 <p align="right"> <img src="./img/18.png" style="right;" alt=" PID controller" width="450" height="230"> </p>
 
+Below presented all Controllers:
+
+<p align="right"> <img src="./img/21.png" style="right;" alt=" all controllers" width="650" height="330"> </p>
