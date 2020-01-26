@@ -161,4 +161,18 @@ To implement Twiddle, we
                     dp[i] *= 1.1
                   
      
-      But if both of those (two if before) fail, we set p[ i ] back to the original value, and we decrease our probing by multiplying it with 0.9.
+      4.4. But if both of those (two if before) fail, we set p[ i ] back to the original value, and we decrease our probing by multiplying it with 0.9.
+      
+                 else:
+                    p[i] += dp[i]
+                    dp[i] *= 0.9
+      
+5. We do this entire thing so long as the sum of the dp's is larger than the threshold(for example 0.00001).
+
+
+That's the core of Twiddle and what it really does is for each coordinate in isolation it moves our parameter down a little bit by potential changes(dp), If it then finds a better solution, it retains it, and it even increments the probing interval. If it fails to find a better solution, it goes back to the original and decreases our probing interval.
+
+As seen below after optimising the parameters with the twiddle algorithm, the PID controller outshines PD controller! Also, with twiddle the PID controller converges faster but we overshoot drastically at first so it's a tradeoff. 
+
+<p align="right"> <img src="./img/18.png" style="right;" alt=" PID controller" width="450" height="230"> </p>
+
