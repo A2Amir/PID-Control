@@ -73,8 +73,22 @@ In PD-control the steering alpha is no just related to the cross track error by 
 
 How do you compute the temporal derivative of the cross track error? This can be computed by the cross track error at time t minus the crosst rack error at time t minus 1 divided by the time span between t and t minus 1. In our code, we assume delta t equals 1, so we can omit this.
 
-<p align="right"> <img src="./img/20.png" style="right;" alt="compute the temporal derivative of the cross track error" width="150" height="90"> </p>
+<p align="right"> <img src="./img/20.png" style="right;" alt="compute the temporal derivative of the cross track error" width="170" height="100"> </p>
 
 We now control not just in proportion to the error itself but also to the difference of the error using a second constant tau d. After implementing and running the code we can see from the below image the PD controller performs much better when it comes to compare with the P Controller.
 
-<p align="right"> <img src="./img/9.png" style="right;" alt=" the execution of the PD controller performs" width="450" height="230"> </p>
+<p align="right"> <img src="./img/9.PNG" style="right;" alt=" the execution of the PD controller performs" width="450" height="230"> </p>
+
+
+## systematic bias
+For this section I am going to talk about a problem that often occurs in robotics called a "systematic bias." When you ordered your car, you believed the front wheels were 100% aligned, but your mechanic made a mistake, and he aligned the wheels a little bit at an angle. Now, for people that isn't a big concern. When we notice this problem, we just steer a little bit stronger. 
+
+To solve this problem, I'm now adding a line that sets the steering drift to be 10 degrees using set_steering_drift command:
+
+      robot.set_steering_drift(10.0/180.0*np.pi)
+
+As you can see below in the image on the left when I run the proportional controller with parameter 0.2 and the differential controller set to 0, it causes a big cross track error (CTE) and when I change  the differential controller to 3(the right image), it makes no difference.
+
+<p align="right"> <img src="./img/10.png" style="right;" alt=" systematic bias" width="680" height="430"> </p>
+
+As tried out, change the differential controller, it makes no difference because the y error is still large.To solve this problem, we need to add another piece to our equation, which will be explained in the next section.
