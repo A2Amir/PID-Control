@@ -68,13 +68,111 @@ The basic next question is is there a way to void the overshoot?  It would be ni
 
 In PD-control the steering alpha is no just related to the cross track error by virtue of the gain parameter tau_p( called previously tau) but also to the temporal derivative of the cross track error, what this means is that when the car has turned enough to reduce the cross track error, it won't just go shooting for the x axis. As seen below, by assuming appropriate settings of the differential gain tau_d versus the proportional gain tau_p, it gracefully approaches the target trajectory.
 
-<p align="right"> <img src="./img/9.png" style="right;" alt=" the PD Controller" width="450" height="230"> </p>
+<p align="right"> <img src="./img/19.png" style="right;" alt=" the PD Controller" width="450" height="230"> </p>
 
 
 How do you compute the temporal derivative of the cross track error? This can be computed by the cross track error at time t minus the crosst rack error at time t minus 1 divided by the time span between t and t minus 1. In our code, we assume delta t equals 1, so we can omit this.
 
-<p align="right"> <img src="./img/10.png" style="right;" alt="compute the temporal derivative of the cross track error" width="150" height="90"> </p>
+<p align="right"> <img src="./img/20.png" style="right;" alt="compute the temporal derivative of the cross track error" width="170" height="100"> </p>
 
 We now control not just in proportion to the error itself but also to the difference of the error using a second constant tau d. After implementing and running the code we can see from the below image the PD controller performs much better when it comes to compare with the P Controller.
 
-<p align="right"> <img src="./img/10.png" style="right;" alt=" the execution of the PD controller performs" width="450" height="230"> </p>
+<p align="right"> <img src="./img/9.PNG" style="right;" alt=" the execution of the PD controller performs" width="450" height="230"> </p>
+
+
+## systematic bias
+For this section I am going to talk about a problem that often occurs in robotics called a "systematic bias." When you ordered your car, you believed the front wheels were 100% aligned, but your mechanic made a mistake, and he aligned the wheels a little bit at an angle. Now, for people that isn't a big concern. When we notice this problem, we just steer a little bit stronger. 
+
+To solve this problem, I'm now adding a line that sets the steering drift to be 10 degrees using set_steering_drift command:
+
+      robot.set_steering_drift(10.0/180.0*np.pi)
+
+As you can see below in the image on the left when I run the proportional controller with parameter 0.2 and the differential controller set to 0, it causes a big cross track error (CTE) and when I change  the differential controller to 3(the right image), it makes no difference.
+
+<p align="right"> <img src="./img/10.png" style="right;" alt=" systematic bias" width="680" height="430"> </p>
+
+As tried out, change the differential controller, it makes no difference because the y error is still large.To solve this problem, we need to add another piece to our equation, which will be explained in the next section.
+
+## PID implementation
+
+As seen above, If you drive a car and your normal steering mode leads you to a trajectory far away from the goal and over a long period of time you can't get closer (see  above the  image on the right). you start steering more and more and the more time goes to the right to compensate the bias.
+As a result, when you drive you steer the car this way (the green arrow above). To drive like the green arrow, you need a sustained situation of large error. That is measured by the integral or the sum of the cross track errors over time.
+
+<p align="right"> <img src="./img/11.png" style="right;" alt=" PID controller" width="450" height="230"> </p>
+
+To make a new controller (see the image below)where steering is proportional to the cross track errors as before and It's equally proportional to the differential of the cross track error, but now it's also proportional to what's called the integral or the sum of all the cross track errors you ever observed.
+
+<p align="right"> <img src="./img/12.png" style="right;" alt=" PID controller" width="450" height="230"> </p>
+
+Below is presented the result of running the implemented the new controller:
+
+<p align="right"> <img src="./img/13.png" style="right;" alt=" PID controller" width="450" height="230"> </p>
+
+Notice: the purpose of the integral term is to compensate for biases and the current robot has no bias. Now, the big question is how we can find good control gains where control gains are these parameters tau_p, tau_d and tau_i. The answer is to called "twiddle." Some people call it "coordinate ascent" to make it a little more sophisticated.
+
+
+## Twiddle
+
+In Twiddle, we are trying to optimize for a set of parameters. To do so, 
+
+1. Our function run()  (See the code) must return a goodness. This goodness value might be the average cross track error. 
+2. Say I wanted to implement Twiddle to minimize the average cross track error. The output of the run function depends on the three parameters.
+
+
+To implement Twiddle, we 
+
+1. build a parameter vector ( named p) of our 3-target parameters, and initialize it with zero.
+2. build a vector of potential changes (named dp) that you want to probe and initialize them for now with 1.
+3. Then you can run our command run( ) with our parameters and whatever it outputs is our best error so far.
+
+          p = [0, 0, 0]
+          dp = [1, 1, 1]
+          robot = make_robot()
+          x_trajectory, y_trajectory, best_err = run(robot, p)
+          
+      Now we wish to modify p as to make the error smaller. That is where Twiddle comes in.
+
+4.	We sequentially go through these parameters.
+
+      4.1. First we tried to increase p by our probing value and compute a new error for this new modified p.
+      
+        for i in range(len(p)):
+            p[i] += dp[i]
+            robot = make_robot()
+            x_trajectory, y_trajectory, err = run(robot, p)
+
+      4.2. If this new error is better than our best error, then we do two things.
+           First, we set best_err to err and we even modify our dp to a slightly larger value by multiplying it with 1.1
+           
+            if err < best_err:
+                best_err = err
+                dp[i] *= 1.1
+                
+      4.3.	Otherwise, we try the other way.
+            We subtract dp from p and we have to do it twice because we added it before and by creating a new robot we do the same thing again. We check whether the error is better than our best error, we retain it, and we multiply dp by 1.1.
+            
+            else:
+                p[i] -= 2 * dp[i]
+                robot = make_robot()
+                x_trajectory, y_trajectory, err = run(robot, p)
+
+                if err < best_err:
+                    best_err = err
+                    dp[i] *= 1.1
+                  
+     
+      4.4. But if both of those (two if before) fail, we set p[ i ] back to the original value, and we decrease our probing by multiplying it with 0.9.
+      
+                 else:
+                    p[i] += dp[i]
+                    dp[i] *= 0.9
+      
+5. We do this entire thing so long as the sum of the dp's is larger than the threshold(for example 0.00001).
+
+
+That's the core of Twiddle and what it really does is for each coordinate in isolation it moves our parameter down a little bit by potential changes(dp), If it then finds a better solution, it retains it, and it even increments the probing interval. If it fails to find a better solution, it goes back to the original and decreases our probing interval.
+
+As seen below after optimising the parameters with the twiddle algorithm, the PID controller outshines PD controller! Also, with twiddle the PID controller converges faster but we overshoot drastically at first so it's a tradeoff. 
+
+<p align="right"> <img src="./img/18.png" style="right;" alt=" PID controller" width="450" height="230"> </p>
+
