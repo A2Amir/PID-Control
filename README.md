@@ -130,7 +130,7 @@ To implement Twiddle, we
           robot = make_robot()
           x_trajectory, y_trajectory, best_err = run(robot, p)
           
-Now we wish to modify p as to make the error smaller. That is where Twiddle comes in.
+      Now we wish to modify p as to make the error smaller. That is where Twiddle comes in.
 
 4.	We sequentially go through these parameters.
 
@@ -143,8 +143,8 @@ Now we wish to modify p as to make the error smaller. That is where Twiddle come
 
       4.2. If this new error is better than our best error, then we do two things.
       
-                        4.2.1. First, we set best_err to err
-                        4.2.2. We even modify our dp to a slightly larger value by multiplying it with 1.1
+4.2.1. First, we set best_err to err
+4.2.2. We even modify our dp to a slightly larger value by multiplying it with 1.1
            
             if err < best_err:
                 best_err = err
