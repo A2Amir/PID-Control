@@ -178,4 +178,4 @@ As seen below after optimising the parameters with the twiddle algorithm, the PI
 
 Below presented all Controllers:
 
-<p align="right"> <img src="./img/21.png" style="right;" alt=" all controllers" width="450" height="230"> </p>
+<p align="right"> <img src="./img/21.png" style="right;" alt=" all controllers" width="650" height="430"> </p>
