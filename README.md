@@ -92,3 +92,19 @@ As you can see below in the image on the left when I run the proportional contro
 <p align="right"> <img src="./img/10.png" style="right;" alt=" systematic bias" width="680" height="430"> </p>
 
 As tried out, change the differential controller, it makes no difference because the y error is still large.To solve this problem, we need to add another piece to our equation, which will be explained in the next section.
+
+## PID implementation
+
+As seen above, If you drive a car and your normal steering mode leads you to a trajectory far away from the goal and over a long period of time you can't get closer (see  above the  image on the right). you start steering more and more and the more time goes to the right to compensate the bias.
+As a result, when you drive you steer the car this way (the green arrow above). To drive like the green arrow, you need a sustained situation of large error. That is measured by the integral or the sum of the cross track errors over time.
+
+<p align="right"> <img src="./img/11.png" style="right;" alt=" PID controller" width="450" height="230"> </p>
+
+To make a new controller (see the image below)where steering is proportional to the cross track errors as before and It's equally proportional to the differential of the cross track error, but now it's also proportional to what's called the integral or the sum of all the cross track errors you ever observed.
+
+<p align="right"> <img src="./img/12.png" style="right;" alt=" PID controller" width="450" height="230"> </p>
+
+Below is presented the result of running the implemented the new controller:
+
+<p align="right"> <img src="./img/13.png" style="right;" alt=" PID controller" width="450" height="230"> </p>
+
