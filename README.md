@@ -142,9 +142,23 @@ To implement Twiddle, we
             x_trajectory, y_trajectory, err = run(robot, p)
 
       4.2. If this new error is better than our best error, then we do two things.
-       4.2.1. First, we set best_err to err
-       4.2.2. We even modify our dp to a slightly larger value by multiplying it with 1.1
+           First, we set best_err to err and we even modify our dp to a slightly larger value by multiplying it with 1.1
            
             if err < best_err:
                 best_err = err
                 dp[i] *= 1.1
+                
+      4.3.	Otherwise, we try the other way.
+            We subtract dp from p and we have to do it twice because we added it before and by creating a new robot we do the same thing again. We check whether the error is better than our best error, we retain it, and we multiply dp by 1.1.
+            
+            else:
+                p[i] -= 2 * dp[i]
+                robot = make_robot()
+                x_trajectory, y_trajectory, err = run(robot, p)
+
+                if err < best_err:
+                    best_err = err
+                    dp[i] *= 1.1
+                  
+     
+      But if both of those (two if before) fail, we set p[ i ] back to the original value, and we decrease our probing by multiplying it with 0.9.
