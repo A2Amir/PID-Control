@@ -33,7 +33,7 @@ What you just learned above is called a "P-controller" where P stands for propor
 
 <p align="right"> <img src="./img/3.png" style="right;" alt=" the maze " width="450" height="230"> </p>
 
-
+ 
 The answer is, it actually overshoots. The problem is, no matter how small the Tau constant is, It will eventually turn its wheels quite a bit towards it's trajectory and moves towards the trajectory more and more(green lines) when it hits the trajectory, it's wheels will be straight but the robot itself will still be oriented a little bit downwards, so it's forced to overshoot.
 
 <p align="right"> <img src="./img/4.png" style="right;" alt=" the maze " width="450" height="230"> </p>
