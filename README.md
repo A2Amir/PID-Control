@@ -195,3 +195,14 @@ As seen below after optimising the parameters with the twiddle algorithm, the PI
        mkdir build && cd build to create and enter the build directory
        cmake .. && make to compile your project
        ./pid to run your code
+       
+ 4. Note:
+ 
+         // d_error is difference from old cte (p_error) to the new cte
+         d_error = (cte - p_error);
+         
+         // p_error gets set to the new cte
+         p_error = cte;
+         
+         // i_error is the sum of ctes to this point
+         i_error += cte;
