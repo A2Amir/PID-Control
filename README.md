@@ -179,3 +179,19 @@ As seen below after optimising the parameters with the twiddle algorithm, the PI
  Below presented all Controllers:
 
 <p align="right"> <img src="./img/21.png" style="right;" alt=" all controllers" width="650" height="330"> </p>
+
+
+## Implementing in C++
+ 
+ the aim of this section is to build a PID controller and tune the PID hyperparameters by applying the general processing flow as described in the previous lessons and test our solution on the simulator!
+ 
+1. The simulator[https://github.com/udacity/self-driving-car-sim/releases] will provide you the cross track error (CTE) and the velocity (mph) in order to compute the appropriate steering angle.
+
+2. The speed limit has been increased from 30 mph to 100 mph.
+
+
+3. In order to build and compile the code, from within the main repository directory, you can:
+
+       mkdir build && cd build to create and enter the build directory
+       cmake .. && make to compile your project
+       ./pid to run your code
