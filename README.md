@@ -198,11 +198,11 @@ As seen below after optimising the parameters with the twiddle algorithm, the PI
        
  4. Note:
  
-         // d_error is difference from old cte (p_error) to the new cte
+      **Differentail error is difference from old cross track error (p_error) to the new cross track error**
          d_error = (cte - p_error);
          
-         // p_error gets set to the new cte
+       **Proportional error gets set to the new cross track error**
          p_error = cte;
          
-         // i_error is the sum of ctes to this point
+       **Integral error is the sum of cross track errors to this point**
          i_error += cte;
