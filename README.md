@@ -210,4 +210,6 @@ As seen below after optimising the parameters with the twiddle algorithm, the PI
          
          i_error += cte;
 
+
+----
 <p align="center"> <img src="./img/1.gif" style="center;" alt=" PID controller" width="650" height="430"> </p>
