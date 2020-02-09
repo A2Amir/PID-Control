@@ -181,7 +181,7 @@ As seen below after optimising the parameters with the twiddle algorithm, the PI
 <p align="right"> <img src="./img/21.png" style="right;" alt=" all controllers" width="650" height="330"> </p>
 
 
-## Implementing in C++
+## [Implementing in C++](https://github.com/A2Amir/PID-Control/tree/master/C%2B%2B)
  
  the aim of this section is to build a PID controller and tune the PID hyperparameters by applying the general processing flow as described in the previous lessons and test our solution on the simulator!
  
@@ -209,3 +209,5 @@ As seen below after optimising the parameters with the twiddle algorithm, the PI
        **Integral error is the sum of cross track errors to this point**
          
          i_error += cte;
+
+<p align="right"> <img src="./img/1.gif" style="right;" alt=" PID controller" width="450" height="230"> </p>
