@@ -1,7 +1,7 @@
 # Introduction
 
 Control is how we use the steering, throttle and breaks to move a car where we want it to go. Control is a trickier problem than it might seem when human turns through an intersection, we use our intuition and experience to determine how hard to steer and when to accelerate and whether we ever need to step on the brakes. Teaching a computer how to do this is hard.
-Control algorithms are often called controllers and one of the most common and fundamental controllers is the PID controller. In this lesson, we will learn how to implement [a PID controller in python](https://github.com/A2Amir/PID-Control/blob/master/Python/PID.ipynb) then we will dive into the Udacity simulator to implement a PID controller in C++.
+Control algorithms are often called controllers and one of the most common and fundamental controllers is the PID controller. In this lesson, we will learn how to implement [a PID controller in python](https://github.com/A2Amir/PID-Control/blob/master/Python/PID.ipynb) then we will dive into the Udacity simulator to implement [a PID controller in C++](https://github.com/A2Amir/PID-Control/tree/master/C%2B%2B).
 
 # PID Control
 
